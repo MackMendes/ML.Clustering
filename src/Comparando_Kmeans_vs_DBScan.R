@@ -1,26 +1,30 @@
-# Exemplo de K-Means não encontrando os 5 Clusters
+
+
+# =======================================
+# Carregando o dataset de multi formas
+# =======================================
 
 if(!require(devtools)) install.packages("devtools")
 devtools::install_github("kassambara/factoextra")
 
 library(factoextra)
-data("multishapes")
+data("multishapes", package = "factoextra")
 df <- multishapes[, 1:2]
 
 plot(df, "DataSet de Multi Formas")
 
+
+# ==========================================================
+# Exemplo de K-Means encontrando 5 Clusters, mas os corretos!
+# ===========================================================
 set.seed(123)
 km.res <- kmeans(df, 5, nstart = 25)
 fviz_cluster(km.res, df, frame = FALSE, geom = "point")
 
 
-# ===================================================
-# Exemplo de K-Means não encontrando os 5 Clusters
-# ===================================================
+# ===================================
 # Exemplos de Cluster DBScan com fpc
-
-
-# ==========
+# ===================================
 # Utilizando DBSCAN do pacote fpc
 if(!require(fpc)) install.packages("fpc")
 
@@ -39,8 +43,9 @@ fviz_cluster(res.fpc, df, stand = FALSE, frame = FALSE, geom = "point")
 print(res.fpc)
 
 
-# ==========
+# ===================================
 # Utilizando DBSCAN do pacote dbscan
+# ===================================
 if(!require(dbscan)) install.packages("dbscan")
 
 library("dbscan")
@@ -59,13 +64,18 @@ fviz_cluster(res.db, df, stand = FALSE, frame = FALSE, geom = "point")
 all(res.fpc$cluster == res.db$cluster)
 
 
+
 # ====================================================
+
+
+# ===============================
 # Definindo o valor ótimo de eps 
+# ===============================
 dbscan::kNNdistplot(df, k =  5)
 abline(h = 0.15, lty = 2)
 
 
-# ====================================================
+
 
 
 
