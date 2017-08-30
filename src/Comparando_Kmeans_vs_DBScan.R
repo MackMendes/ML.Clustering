@@ -6,6 +6,9 @@ devtools::install_github("kassambara/factoextra")
 library(factoextra)
 data("multishapes")
 df <- multishapes[, 1:2]
+
+plot(df, "DataSet de Multi Formas")
+
 set.seed(123)
 km.res <- kmeans(df, 5, nstart = 25)
 fviz_cluster(km.res, df, frame = FALSE, geom = "point")
@@ -15,8 +18,6 @@ fviz_cluster(km.res, df, frame = FALSE, geom = "point")
 # Exemplo de K-Means não encontrando os 5 Clusters
 # ===================================================
 # Exemplos de Cluster DBScan com fpc
-data("multishapes", package = "factoextra")
-df <- multishapes[, 1:2]
 
 
 # ==========
