@@ -1,4 +1,4 @@
-
+set.seed(123)
 
 # =======================================
 # Carregando o dataset de multi formas
@@ -17,7 +17,6 @@ plot(df, "DataSet de Multi Formas")
 # ==========================================================
 # Exemplo de K-Means encontrando 5 Clusters, mas os corretos!
 # ===========================================================
-set.seed(123)
 km.res <- kmeans(df, 5, nstart = 25)
 fviz_cluster(km.res, df, frame = FALSE, geom = "point")
 
@@ -30,7 +29,6 @@ if(!require(fpc)) install.packages("fpc")
 
 library("fpc")
 # Compute DBSCAN using fpc package
-set.seed(123)
 res.fpc <- fpc::dbscan(df, eps = 0.15, MinPts = 5)
 
 # Plotar resultados do DBSCAN
